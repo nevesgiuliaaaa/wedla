@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedla, volta! 💛</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* ===== TELA 1 — FUNDO PRETO ===== */
+    #tela1 {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: opacity 0.6s ease;
+    }
+
+    #tela1.sair {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .botao {
+      font-family: 'Bungee', cursive;
+      font-size: clamp(1.1rem, 4.5vw, 2.4rem);
+      color: #fff;
+      background: linear-gradient(135deg, #ff2d78, #ff7a00 50%, #ffd000);
+      border: none;
+      border-radius: 60px;
+      padding: 1.2em 2.2em;
+      cursor: pointer;
+      letter-spacing: 1px;
+      text-shadow: 0 3px 0 rgba(0,0,0,0.35);
+      box-shadow:
+        0 0 0 6px rgba(255, 45, 120, 0.25),
+        0 0 40px rgba(255, 122, 0, 0.6),
+        0 12px 30px rgba(0,0,0,0.6);
+      animation: pulsar 1.6s ease-in-out infinite;
+      transition: transform 0.15s ease, box-shadow 0.3s ease;
+      max-width: 90vw;
+      text-align: center;
+    }
+
+    .botao:hover {
+      transform: scale(1.06);
+      box-shadow:
+        0 0 0 8px rgba(255, 45, 120, 0.35),
+        0 0 60px rgba(255, 122, 0, 0.9),
+        0 14px 34px rgba(0,0,0,0.7);
+    }
+
+    .botao:active {
+      transform: scale(0.96);
+    }
+
+    @keyframes pulsar {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.05); }
+    }
+
+    /* ===== TELA 2 — IMAGEM DE FUNDO ===== */
+    #tela2 {
+      position: fixed;
+      inset: 0;
+      background: url('wedla.jpeg') center center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+
+    #tela2.ativa {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Escurece levemente o fundo para o texto destacar */
+    #tela2::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .frase {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 5vw;
+      max-width: 100%;
+      opacity: 0;
+      animation: fadeIn 2.2s ease forwards;
+    }
+
+    .frase span {
+      display: inline-block;
+      font-family: 'Bungee', cursive;
+      font-size: clamp(2rem, 8vw, 6rem);
+      line-height: 1.15;
+      margin: 0 0.06em;
+      text-shadow:
+        0 4px 0 rgba(0,0,0,0.45),
+        0 0 25px rgba(255, 255, 255, 0.55),
+        0 0 60px rgba(255, 45, 120, 0.8);
+      animation: quicar 1.2s ease-in-out infinite;
+    }
+
+    /* Cores alegres alternadas por letra */
+    .frase span:nth-child(1)  { color: #ff2d78; animation-delay: 0.0s; }
+    .frase span:nth-child(2)  { color: #ffd000; animation-delay: 0.1s; }
+    .frase span:nth-child(3)  { color: #4dff88; animation-delay: 0.2s; }
+    .frase span:nth-child(4)  { color: #4dc3ff; animation-delay: 0.3s; }
+    .frase span:nth-child(5)  { color: #ff7a00; animation-delay: 0.4s; }
+    .frase span:nth-child(6)  { color: #ff2d78; animation-delay: 0.5s; }
+    .frase span:nth-child(7)  { color: #ffd000; animation-delay: 0.6s; }
+    .frase span:nth-child(8)  { color: #4dff88; animation-delay: 0.7s; }
+    .frase span:nth-child(9)  { color: #4dc3ff; animation-delay: 0.8s; }
+    .frase span:nth-child(10) { color: #ff7a00; animation-delay: 0.9s; }
+    .frase span:nth-child(11) { color: #ff2d78; animation-delay: 1.0s; }
+    .frase span:nth-child(12) { color: #ffd000; animation-delay: 1.1s; }
+    .frase span:nth-child(13) { color: #4dff88; animation-delay: 1.2s; }
+    .frase span:nth-child(14) { color: #4dc3ff; animation-delay: 1.3s; }
+    .frase span:nth-child(15) { color: #ff7a00; animation-delay: 1.4s; }
+    .frase span:nth-child(16) { color: #ff2d78; animation-delay: 1.5s; }
+    .frase span:nth-child(17) { color: #ffd000; animation-delay: 1.6s; }
+    .frase span:nth-child(18) { color: #4dff88; animation-delay: 1.7s; }
+    .frase span:nth-child(19) { color: #4dc3ff; animation-delay: 1.8s; }
+    .frase span:nth-child(20) { color: #ff7a00; animation-delay: 1.9s; }
+    .frase span:nth-child(21) { color: #ff2d78; animation-delay: 2.0s; }
+    .frase span:nth-child(22) { color: #ffd000; animation-delay: 2.1s; }
+    .frase span:nth-child(23) { color: #4dff88; animation-delay: 2.2s; }
+    .frase span:nth-child(24) { color: #4dc3ff; animation-delay: 2.3s; }
+    .frase span:nth-child(25) { color: #ff7a00; animation-delay: 2.4s; }
+    .frase span:nth-child(26) { color: #ff2d78; animation-delay: 2.5s; }
+    .frase span:nth-child(27) { color: #ffd000; animation-delay: 2.6s; }
+    .frase span:nth-child(28) { color: #4dff88; animation-delay: 2.7s; }
+    .frase span:nth-child(29) { color: #4dc3ff; animation-delay: 2.8s; }
+    .frase span:nth-child(30) { color: #ff7a00; animation-delay: 2.9s; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes quicar {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    /* Confete caindo para dar clima de festa */
+    .confete {
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      z-index: 3;
+      opacity: 0;
+      animation: cair linear infinite;
+    }
+
+    @keyframes cair {
+      to { transform: translateY(110vh) rotate(720deg); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TELA 1 -->
+  <div id="tela1">
+    <button class="botao" id="btn">CLIQUE AQUI, WEDLA</button>
+  </div>
+
+  <!-- TELA 2 -->
+  <div id="tela2">
+    <h1 class="frase" id="frase"></h1>
+  </div>
+
+  <script>
+    // Monta a frase letra por letra (cada letra com cor própria)
+    const texto = "WEDLA VOLTA, ESTAMOS COM SAUDADES";
+    const frase = document.getElementById("frase");
+    for (const letra of texto) {
+      const span = document.createElement("span");
+      span.textContent = letra === " " ? "\u00A0" : letra;
+      frase.appendChild(span);
+    }
+
+    // Botão: troca da tela 1 para a tela 2
+    document.getElementById("btn").addEventListener("click", function () {
+      const tela1 = document.getElementById("tela1");
+      const tela2 = document.getElementById("tela2");
+      tela1.classList.add("sair");
+      tela2.classList.add("ativa");
+      // Reinicia a animação fade-in da frase
+      frase.style.animation = "none";
+      void frase.offsetWidth; // força reflow para reiniciar
+      frase.style.animation = "";
+      criarConfete();
+    });
+
+    // Confete caindo na tela 2
+    function criarConfete() {
+      const cores = ["#ff2d78", "#ffd000", "#4dff88", "#4dc3ff", "#ff7a00", "#ffffff"];
+      for (let i = 0; i < 60; i++) {
+        const c = document.createElement("div");
+        c.className = "confete";
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.background = cores[Math.floor(Math.random() * cores.length)];
+        c.style.animationDuration = (3 + Math.random() * 4) + "s";
+        c.style.animationDelay = (Math.random() * 3) + "s";
+        c.style.width = (6 + Math.random() * 8) + "px";
+        c.style.height = (6 + Math.random() * 8) + "px";
+        document.body.appendChild(c);
+      }
+    }
+  </script>
+</body>
+</html>
